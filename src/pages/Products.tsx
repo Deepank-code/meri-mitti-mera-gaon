@@ -190,7 +190,7 @@ const Products = () => {
       {/* sidebar */}
       <AdminSideBar />
       <main>{Table()}</main>
-      <Link className="create-product-btn" to="/admin/new-product">
+      <Link className="create-product-btn" to="/admin/product/new-product">
         <FaPlus />
       </Link>
     </div>

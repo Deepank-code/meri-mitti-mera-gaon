@@ -31,7 +31,7 @@ function App() {
           {/* charts */}
 
           {/* management*/}
-          <Route path="/admin/product/new" element={<NewProduct />} />
+          <Route path="/admin/product/new-product" element={<NewProduct />} />
           <Route path="/admin/product/:id" element={<ProductManagement />} />
           <Route
             path="/admin/transaction/:id"
