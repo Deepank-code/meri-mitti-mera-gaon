@@ -7,7 +7,30 @@ import { Chart } from "chart.js";
 import { BarChart, DoughnutChart } from "../Components/Charts";
 import { BiMaleFemale } from "react-icons/bi";
 import Table from "../Components/DashboardTable";
+import quotes from "../assets/quotes";
+import { useEffect, useState } from "react";
+
+const greetTime = (): string => {
+  const time = new Date();
+  let currTime = time.getHours();
+
+  if (currTime >= 1 && currTime <= 12) {
+    return "Good Morning!!";
+  } else if (currTime >= 13 && currTime <= 17) {
+    return "Good AfterNoon!!";
+  } else if (currTime >= 18 && currTime <= 22) {
+    return "Good Evening!!";
+  } else {
+    return "Good Night!!";
+  }
+};
+
 const Dashboard = () => {
+  const [randomQuote, setRandomQuote] = useState<string>("hello");
+  useEffect(() => {
+    setRandomQuote(quotes[Math.floor(Math.random() * 15 + 1)]);
+  }, []);
+
   return (
     <div className="adminContainer">
       {/* sidebar */}
@@ -22,6 +45,17 @@ const Dashboard = () => {
             alt="user"
           />
         </div>
+
+        <section className="greeting-section">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgF2suM5kFwk9AdFjesEr8EP1qcyUvah8G7w&s"
+            alt="se"
+          />
+          <div>
+            <h1>Hey Deepank! {greetTime()}</h1>
+            <p>{randomQuote}</p>
+          </div>
+        </section>
         <section className="widgetcontainer">
           <WidgetItem
             heading="Revenue"

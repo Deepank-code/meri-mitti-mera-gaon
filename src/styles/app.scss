@@ -1,6 +1,8 @@
 @import "mixin";
 @import "dashboard";
 @import "product";
+@import "chart.scss";
+@import "mediaquery";
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -142,4 +144,29 @@ a.active {
       background-color: rgba(0, 115, 255, 0.1);
     }
   }
+}
+
+#hamburger {
+  display: grid;
+  place-items: center;
+  @include square(3rem);
+  border: none;
+  cursor: pointer;
+  color: #00fd119e;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  background-color: whitesmoke;
+  border-radius: 20%;
+  z-index: 9;
+}
+#close-modal-btn {
+  background-color: rgb(251, 67, 16);
+  color: white;
+  width: 100%;
+  padding: 0.8em;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 10px;
 }

@@ -1,4 +1,4 @@
-import { Bar, Doughnut } from "react-chartjs-2";
+import { Bar, Doughnut, Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,9 +11,11 @@ import {
   plugins,
   ArcElement,
   ChartData,
+  Filler,
   ChartOptions,
+  LineElement,
 } from "chart.js";
-import { BsDisplay } from "react-icons/bs";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,7 +23,9 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
+  Filler,
   ArcElement,
+  LineElement,
   Legend
 );
 
@@ -131,4 +135,91 @@ export const DoughnutChart = ({
   };
 
   return <Doughnut data={doughnutData} options={doughnutOptions} />;
+};
+
+interface PieChartProps {
+  labels: string[];
+  data: number[];
+  backgroundColor: string[];
+  cutout?: number | string;
+  legends?: boolean;
+  offset?: number[];
+}
+
+export const PieChart = ({
+  labels,
+  data,
+  backgroundColor,
+
+  offset,
+}: PieChartProps) => {
+  const PieChartData: ChartData<"pie", number[], string> = {
+    labels,
+    datasets: [
+      {
+        data,
+        backgroundColor,
+        borderWidth: 1,
+        offset,
+      },
+    ],
+  };
+
+  const PieOptions: ChartOptions<"pie"> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
+  return <Pie data={PieChartData} options={PieOptions} />;
+};
+
+interface LineChartProps {
+  data: number[];
+  label: string;
+
+  bgColor: string;
+  borderColor: string;
+  labels?: string[];
+}
+
+export const LineChart = ({
+  data,
+  label,
+
+  bgColor,
+  borderColor,
+  labels,
+}: LineChartProps) => {
+  const options: ChartOptions<"line"> = {
+    responsive: true,
+
+    plugins: {
+      legend: {
+        position: "top" as const,
+        display: false,
+      },
+      title: {
+        display: false,
+
+        text: "Line js bar chart",
+      },
+    },
+  };
+  const lineChartdata: ChartData<"line", number[], string> = {
+    labels,
+    datasets: [
+      {
+        fill: true,
+        label,
+        data,
+        backgroundColor: bgColor,
+        borderColor,
+      },
+    ],
+  };
+  return <Line options={options} data={lineChartdata} />;
 };

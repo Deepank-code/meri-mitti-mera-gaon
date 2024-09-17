@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { lazy, Suspense } from "react";
 import Loader from "./Components/Loader";
+import PieChart from "./pages/charts/PieCharts";
+import LineChart from "./pages/charts/LineCharts";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Products = lazy(() => import("./pages/Products"));
@@ -15,6 +17,7 @@ const ProductManagement = lazy(
 const Transactionmanagement = lazy(
   () => import("./pages/management/Transactionmanagement")
 );
+const BarCharts = lazy(() => import("./pages/charts/BarCharts"));
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
           <Route path="/" element={<Landing />} />
 
           {/* charts */}
+          <Route path="/admin/chart/bar" element={<BarCharts />} />
+          <Route path="/admin/chart/pie" element={<PieChart />} />
+          <Route path="/admin/chart/line" element={<LineChart />} />
 
           {/* management*/}
           <Route path="/admin/product/new-product" element={<NewProduct />} />
