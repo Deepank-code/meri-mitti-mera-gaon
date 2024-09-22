@@ -1,8 +1,11 @@
-@import "mixin";
-@import "dashboard";
-@import "product";
-@import "chart.scss";
-@import "mediaquery";
+@import "admin/mixin";
+@import "./_cart";
+@import "./shipping";
+@import "./admin/chart";
+@import "./admin/dashboard";
+@import "./admin/product";
+
+@import "./admin/mediaquery";
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -31,10 +34,10 @@ a {
   padding: 0.5rem 1rem;
   border-radius: 10px;
 }
-a.active {
-  background-color: rgba(92, 240, 66, 0.56);
-  color: rgba(0, 0, 0, 0.8) !important;
-}
+// a.active {
+//   background-color: rgba(92, 240, 66, 0.56);
+//   color: rgba(0, 0, 0, 0.8) !important;
+// }
 .adminContainer {
   @include grid(1fr 4fr, 2rem);
   height: 100vh;
@@ -61,9 +64,13 @@ a.active {
         list-style: none;
         > li {
           transition: padding 2s;
-          a {
+          > a {
             color: rgba(0, 0, 0, 0.825);
             @include flex(row, unset);
+          }
+          .active {
+            background-color: rgba(92, 240, 66, 0.56);
+            color: rgba(0, 0, 0, 0.8) !important;
           }
         }
       }
@@ -169,4 +176,60 @@ a.active {
   font-size: 0.9em;
   border: none;
   border-radius: 10px;
+}
+
+.header {
+  @include flex(row, space-between, center, unset);
+
+  height: auto;
+  margin: auto 2em;
+  > div > img {
+    width: 100px;
+    height: 100px;
+  }
+  > div {
+    @include flex(row, center, center, unset);
+  }
+  > div > .name-logo {
+    height: 50px;
+    float: right;
+    vertical-align: middle;
+  }
+  > .nav-links {
+    @include flex(row, unset, unset, 1.6rem);
+    > a {
+      color: rgb(0, 0, 0);
+      letter-spacing: 2px;
+      font-size: 1.2rem;
+      transition: padding 0.5s;
+    }
+    .active {
+      padding-left: 0.7em;
+      padding-right: 0.7em;
+      background-color: rgb(56, 255, 73);
+      border-radius: 10px;
+      color: #ffffff;
+    }
+    button {
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      background-color: transparent;
+      &:hover {
+        color: rgb(36, 245, 60);
+      }
+    }
+    dialog {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      width: 100px;
+      position: absolute;
+      left: calc(100% - 100px);
+      top: 0%;
+      > div {
+        @include flex(column, flex-start, center, 0.25rem);
+      }
+    }
+  }
 }

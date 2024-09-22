@@ -1,0 +1,17 @@
+.shipping {
+  @include flex(row);
+
+  .back-btn {
+    @include square(2.5rem);
+    background-color: black;
+    color: white;
+    @include flex(row);
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    border-radius: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+}
